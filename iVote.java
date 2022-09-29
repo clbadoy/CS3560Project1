@@ -113,4 +113,14 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
         this.studentStringAnswers = newAnswer;
     }
 
+    public void clearVoteData()
+    {
+        clearData();
+    }
+
+    private void clearData()
+    {
+        hasAnswered = false;
+        studentStringAnswers = "";
+    }
 } 
