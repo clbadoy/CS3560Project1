@@ -1,6 +1,8 @@
+import java.util.ArrayList;
 abstract class Question {
 
     String question;
+    ArrayList<String> answers;
     String answerChoices;
     int questionType;
     int numberAnswers;
@@ -16,6 +18,12 @@ abstract class Question {
     public abstract String getQuestion();
 
     public abstract String getAnswerChoices();
+
+    public abstract void setQuestion();
+
+    public abstract void addAnswerChoice();
+
+    public abstract void removeAnswerChoice();
 
     public abstract int getQuestionType();
 

@@ -1,4 +1,8 @@
+import java.util.ArrayList;
 public class SingleChoice extends Question {
+
+    private ArrayList<String> answers;
+    private final int LETTER_A = 65;
 
     public SingleChoice(String quest, String ans, int numAns) {
         super(quest, ans, 1, numAns);
@@ -6,23 +10,46 @@ public class SingleChoice extends Question {
 
     @Override
     public String getQuestion() {
-        return this.question;
+        String tempQuestion = this.question;
+        return tempQuestion;
     }
     
     @Override
     public String getAnswerChoices() {
-        return this.answerChoices;
+        String tempAnswer = "";
+        for(int i = 0; i < answers.size(); i++)
+            tempAnswer += answers.get(i) + "\n";
+        return tempAnswer;
     }
 
     @Override
     public int getQuestionType() {
-        return this.questionType;
+        int tempQT = this.questionType;
+        return tempQT;
         
+    }
+    @Override
+    public void setQuestion(String str) {
+        this.question = str;
+    }
+
+    @Override
+    public void addAnswerChoice(String str) {
+        String newAnswer = Character.toString((char) LETTER_A + answers.size()) + ": " + str;
+        answers.add(newAnswer);
+    }
+
+    @Override
+    public void replaceAnswerChoice(int index, String str) {
+        
+        String newAnswer = Character.toString((char) LETTER_A + index) + ": " + str;
+        answers.set(index, newAnswer);
     }
 
     @Override
     public int getNumAnswers() {
-        return this.numberAnswers;
+        int tempNumAns = this.numberAnswers;
+        return tempNumAns;
     }
 
     public String toString() {
