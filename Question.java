@@ -1,33 +1,31 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 abstract class Question {
 
     String question;
-    ArrayList<String> answers;
-    String answerChoices;
+    //ArrayList<String> answers;
     int questionType;
-    int numberAnswers;
 
-    public Question(String quest, String ans, int qType, int numAns)
+    public Question(String quest, int qType)
     {
         question = quest;
-        answerChoices = ans;
         questionType = qType;
-        numberAnswers = numAns;
     }
 
     public abstract String getQuestion();
 
     public abstract String getAnswerChoices();
 
-    public abstract void setQuestion();
+    public abstract void setQuestion(String str);
 
-    public abstract void addAnswerChoice();
+    public abstract void addAnswerChoice(String str);
 
-    public abstract void removeAnswerChoice();
-
+    public abstract void replaceAnswerChoice(int index, String str);
+    
     public abstract int getQuestionType();
 
     public abstract int getNumAnswers();
 
     public abstract String toString();
+
+    public abstract void clearQuestion();
 }

@@ -4,8 +4,8 @@ public class MultipleChoice extends Question {
     private ArrayList<String> answers;
     private final int LETTER_A = 65;
 
-    public MultipleChoice(String quest, String ans, int numAns) {
-        super(quest, ans, 0, numAns);
+    public MultipleChoice(String quest) {
+        super(quest, 0);
         answers = new ArrayList<String>();
     }
 
@@ -50,7 +50,7 @@ public class MultipleChoice extends Question {
 
     @Override
     public int getNumAnswers() {
-        int tempNumAns = this.numberAnswers;
+        int tempNumAns = answers.size();
         return tempNumAns;
     }
 
@@ -59,4 +59,12 @@ public class MultipleChoice extends Question {
         return questionText;
     }
     
+    public void clearQuestion() {
+        clear();
+    }
+
+    private void clear() {
+        this.question = "";
+        answers.clear();
+    }
 }

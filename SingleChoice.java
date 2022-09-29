@@ -4,8 +4,9 @@ public class SingleChoice extends Question {
     private ArrayList<String> answers;
     private final int LETTER_A = 65;
 
-    public SingleChoice(String quest, String ans, int numAns) {
-        super(quest, ans, 1, numAns);
+    public SingleChoice(String quest) {
+        super(quest, 1);
+        answers = new ArrayList<String>();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class SingleChoice extends Question {
 
     @Override
     public int getNumAnswers() {
-        int tempNumAns = this.numberAnswers;
+        int tempNumAns = answers.size();
         return tempNumAns;
     }
 
@@ -56,5 +57,13 @@ public class SingleChoice extends Question {
         String questionText = getQuestion() + "\n" + getAnswerChoices();
         return questionText;
     }
-    
+
+    public void clearQuestion() {
+        clear();
+    }
+
+    private void clear() {
+        this.question = "";
+        answers.clear();
+    }
 }
