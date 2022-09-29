@@ -16,7 +16,7 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
         studentStringAnswers = "";
     }
     
-    public String getStudentAnswer(String str) {
+    public String getStudentAnswer() {
         String tempAnswer = this.studentStringAnswers;
         return tempAnswer;
     }
@@ -28,7 +28,7 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
 
         switch(theQuestion.getQuestionType()){
             case 0:
-                multipleAnswers = str.split(",\\s+");
+                multipleAnswers = str.split(",\\s*");
                 for(int i = 0; i < multipleAnswers.length; i++)
                 {
                     isValidAnswer = verifyValidAnswer(multipleAnswers[i]);
@@ -61,12 +61,27 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
         boolean valid = false;
         boolean flag = true;
         Scanner kb = new Scanner(System.in);
+        String[] multipleAnswers;
         String newAnswer = "";
         while(valid == false)
         {
             System.out.println("Error: Invalid answer. Please try again. Input new answer: ");
-            newAnswer = kb.nextLine(); //TODO: Add regex support for MultipleChoice.
-            valid = verifyValidAnswer(newAnswer);
+            newAnswer = kb.nextLine();
+
+            if(theQuestion.getQuestionType() == 0)
+            {
+                multipleAnswers = newAnswer.split(",\\s*");
+                for(int i = 0; i < multipleAnswers.length; i++)
+                {   
+                    valid = verifyValidAnswer(multipleAnswers[i]);
+                    if(valid == false)
+                        flag = false;
+                }
+                valid = flag;
+                flag = true;
+            }
+            else
+                valid = verifyValidAnswer(newAnswer);
         }
         kb.close();
         return newAnswer;
@@ -74,7 +89,7 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
 
     private boolean verifyValidAnswer(String str) 
     {
-        if(str.length() == 1 && ('A' <= str.charAt(0) && str.charAt(0) < (char)theQuestion.getNumAnswers()))
+        if(str.length() == 1 && ('A' <= str.charAt(0) && str.charAt(0) <= (char)theQuestion.getNumAnswers() + 65))
             return true;
         else
             return false;
