@@ -123,4 +123,14 @@ public class iVote /*extends VotingService*/ { //MAYBE EXTENDS?
         hasAnswered = false;
         studentStringAnswers = "";
     }
+
+    public int getStudentCount()
+    {
+        return classRoster.size();
+    }
+
+    public int getNumAnswers()
+    {
+        return theQuestion.getNumAnswers();
+    }
 } 
