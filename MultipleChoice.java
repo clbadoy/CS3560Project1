@@ -24,6 +24,18 @@ public class MultipleChoice extends Question {
     }
 
     @Override
+    public int getQuestionType() {
+        int tempQT = this.questionType;
+        return tempQT;
+    }
+
+    @Override
+    public int getNumAnswers() {
+        int tempNumAns = answers.size();
+        return tempNumAns;
+    }
+
+    @Override
     public void setQuestion(String str) {
         this.question = str;
     }
@@ -41,24 +53,6 @@ public class MultipleChoice extends Question {
         answers.set(index, newAnswer);
     }    
 
-    @Override
-    public int getQuestionType() {
-        int tempQT = this.questionType;
-        return tempQT;
-        
-    }
-
-    @Override
-    public int getNumAnswers() {
-        int tempNumAns = answers.size();
-        return tempNumAns;
-    }
-
-    public String toString() {
-        String questionText = getQuestion() + "\n" + getAnswerChoices();
-        return questionText;
-    }
-    
     public void clearQuestion() {
         clear();
     }
@@ -67,4 +61,10 @@ public class MultipleChoice extends Question {
         this.question = "";
         answers.clear();
     }
+    
+    public String toString() {
+        String questionText = getQuestion() + "\n" + getAnswerChoices();
+        return questionText;
+    }
+    
 }

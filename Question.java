@@ -15,17 +15,18 @@ abstract class Question {
 
     public abstract String getAnswerChoices();
 
+    public abstract int getQuestionType();
+
+    public abstract int getNumAnswers();
+
     public abstract void setQuestion(String str);
 
     public abstract void addAnswerChoice(String str);
 
     public abstract void replaceAnswerChoice(int index, String str);
-    
-    public abstract int getQuestionType();
-
-    public abstract int getNumAnswers();
-
-    public abstract String toString();
 
     public abstract void clearQuestion();
+    
+    public abstract String toString();
+
 }
