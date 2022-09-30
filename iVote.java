@@ -43,7 +43,7 @@ public class iVote {
      * @return String type of the student's answer.
      */
     public String getStudentAnswer() {
-        String tempAnswer = this.studentStringAnswers;
+        String tempAnswer = studentStringAnswers;
         return tempAnswer;
     }
 
@@ -55,14 +55,14 @@ public class iVote {
      * @param str The new answer that the student potentially answered the question with.
      */
     public void insertStudentAnswer(String str) { //TODO: Fix MULTI
-        String[] multipleAnswers;
+        String[] multipleAnswers = null;
         boolean isValidAnswer = false;
         String temp = str;
 
         // Initial check for verification before calling to helper method.
         switch(theQuestion.getQuestionType()){
             case 0:
-                multipleAnswers = str.split(",\\s*");
+                multipleAnswers = str.split(",\\s+");
                 for(int i = 0; i < multipleAnswers.length; i++)
                 {
                     isValidAnswer = verifyValidAnswer(multipleAnswers[i]);
@@ -73,6 +73,14 @@ public class iVote {
             case 1:
                 isValidAnswer = verifyValidAnswer(str);
                 break; 
+        }
+
+        
+        if(theQuestion.getQuestionType() == 0)
+        {
+            temp = "";
+            for(int i = 0; i < multipleAnswers.length; i++)
+                temp += multipleAnswers[i];
         }
 
         // If the answer format is incorrect (Format: "A, B, C" or "A"), 
@@ -114,7 +122,7 @@ public class iVote {
 
             if(theQuestion.getQuestionType() == 0)
             {
-                multipleAnswers = newAnswer.split(",\\s*");
+                multipleAnswers = newAnswer.split(",\\s+");
                 for(int i = 0; i < multipleAnswers.length; i++)
                 {   
                     valid = verifyValidAnswer(multipleAnswers[i]);
@@ -193,7 +201,12 @@ public class iVote {
      */
     public int getStudentCount()
     {
-        return classRoster.size();
+        return student.getStudentTotal();
+    }
+
+    public static void clearStudents()
+    {
+        classRoster.clear();
     }
 
     /**
